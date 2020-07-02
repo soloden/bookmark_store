@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BookmarkController@index');
+Route::get('/add', 'BookmarkController@create');
+Route::post('/add', 'BookmarkController@store');
+Route::get('/{id}', 'BookmarkController@show')->where('id', '[0-9]+');
+Route::get('/delete/{id}', 'BookmarkController@destroy')->where('id', '[0-9]+');
