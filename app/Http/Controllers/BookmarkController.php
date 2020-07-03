@@ -18,7 +18,9 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        $res = DB::table('bookmarks')->orderBy('created_at', 'desc')->get();
+        $res = DB::table('bookmarks')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
         return view('bookmark.list', ['data' => $res]);
     }
 
@@ -53,7 +55,6 @@ class BookmarkController extends Controller
         $bookmark->favicon = $params['favicon'];
         $bookmark->keyword = $params['keyword'];
         $bookmark->description = $params['description'];
-        $bookmark->password = Hash::make($request->get('password'));
         if ($bookmark->save()) {
             return view('bookmark.element', ['data' => $bookmark])
                 ->with('success', 'Закладка добавлена');

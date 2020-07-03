@@ -31,5 +31,10 @@
                 @endforeach
             </tbody>
           </table>
+        <div class="row">
+            <div class="text-center">
+                {{ $data->links() }}
+            </div>
+        </div>
     @endif
 @endsection
